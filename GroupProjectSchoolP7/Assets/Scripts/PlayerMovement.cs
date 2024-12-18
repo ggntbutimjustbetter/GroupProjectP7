@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -34,8 +34,7 @@ public class PlayerMovement : MonoBehaviour
     bool grounded;
 
     public Transform orientation;
-    public TextMeshProUGUI countText;
-    private int count;
+    public Text countText;
     public GameObject winTextObject;
 
     float horizontalInput;
@@ -58,16 +57,12 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        count = 0;
 
         rb.freezeRotation = true;
 
         readyToJump = true;
 
         startYScale = transform.localScale.y;
-
-        SetCountText();
-        winTextObject.SetActive(false);
     }
 
     private void Update()
@@ -162,14 +157,6 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 
-    void SetCountText()
-    {
-        countText.text = "Count: " + count.ToString();
-        if (count >= 8)
-        {
-            winTextObject.SetActive(true);
-        }
-    }
 
     private void SpeedControl()
     {
@@ -195,15 +182,6 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("PickUp"))
-        {
-            other.gameObject.SetActive(false);
-            count = count + 1;
-
-            SetCountText();
-        }
-    }
+  
 
 }
