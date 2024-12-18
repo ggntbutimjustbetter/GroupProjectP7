@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     bool grounded;
 
     public Transform orientation;
-    public TextMeshProUGUI countText;
+    public Text countText;
     public GameObject winTextObject;
 
     float horizontalInput;
